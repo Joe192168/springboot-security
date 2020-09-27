@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joe.dao.UserDao">
+    <resultMap id="userMap" type="com.joe.domian.pojo.User">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="fullname" column="fullname"/>
+        <result property="isLocked" column="islocked"/>
+        <result property="mobile" column="mobile"/>
+    </resultMap>
+
+
+    <sql id="queryCondition">
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="username != null and username != ''">
+                and username = #{username}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+            <if test="fullname != null and fullname != ''">
+                and fullname = #{fullname}
+            </if>
+            <if test="isLocked != null and isLocked != ''">
+                and islocked = #{isLocked}
+            </if>
+            <if test="mobile != null and mobile != ''">
+                and mobile = #{mobile}
+            </if>
+        </where>
+    </sql>
+
+    <select id="getByMap" parameterType="map" resultMap="userMap">
+        SELECT u.* FROM t_user u
+        <include refid="queryCondition" />
+        ORDER  by id DESC
+    </select>
+
+
+    <select id="getById" parameterType="int" resultMap="userMap">
+    	SELECT * FROM t_user WHERE id =#{id}
+    </select>
+
+    <select id="getByUserName" parameterType="String" resultMap="userMap">
+		select u.* from t_user u
+		where username= #{username}
+	</select>
+
+    <insert id="create" parameterType="com.joe.domian.pojo.User">
+        <selectKey resultType="int"  order="AFTER" keyProperty="id" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO t_user(
+        id,
+        username,
+        password,
+        fullname,
+        isLocked,
+        mobile
+        )VALUES(
+        #{id},
+        #{username},
+        #{password},
+        #{fullname},
+        #{isLocked},
+        #{mobile}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.joe.domian.pojo.User">
+        UPDATE t_user
+        <set>
+            <if test = "password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="fullname != null and fullname != ''">
+                fullname = #{fullname},
+            </if>
+            <if test="isLocked != null and isLocked != ''">
+                islocked = #{isLocked},
+            </if>
+            <if test=" mobile!= null and mobile != ''">
+                mobile = #{mobile},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+    	DELETE FROM t_user WHERE id = #{id}
+    </delete>
+
+</mapper>

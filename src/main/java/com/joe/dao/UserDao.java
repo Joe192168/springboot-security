@@ -1,32 +1,22 @@
 package com.joe.dao;
 
 import com.joe.domian.pojo.User;
-import com.joe.mapper.MyRowMapper;
-import org.springframework.beans.factory.BeanClassLoaderAware;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @program: springboot-security
- * @description:
+ * @description: 用户接口
  * @author: xiaoqiaohui
  * @create: 2020-09-25 19:19
  **/
-@Repository
-public class UserDao {
+public interface UserDao {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    public User getUserByuserName(String userName){
-        String sql = "select * from t_user username = ?";
-        User user =  jdbcTemplate.queryForObject(sql,new MyRowMapper(),userName);
-        if (user == null){
-            return null;
-        }
-        return user;
-    }
+    List<User> getByMap(Map<String, Object> map);
+    //List<User> getByRoleId(Map<String, Object> map);
+    User getById(Integer id);
+    Integer create(User user);
+    int update(User user);
+    User getByUserName(String userName);
 
 }
