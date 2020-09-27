@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="73c7c5ca-3da5-4bfc-90d5-989c5982ea6d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/joe/SpringBootSecurityApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/joe/SpringBootSecurityApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/joe/config/SecurityUserDetails.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/joe/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/joe/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/joe/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/joe/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/joe/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/joe/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/joe/domian/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/joe/domian/pojo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/joe/mapper/MyRowMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/joe/services/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/joe/services/UserDetailsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-    </list>
+    <list default="true" id="73c7c5ca-3da5-4bfc-90d5-989c5982ea6d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +48,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/joe/controller" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/db" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -79,6 +66,7 @@
       <recent name="G:\Git\springboot-security\src\main\resources\templates\user\main" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Git\springboot-security\src\main\resources\db" />
       <recent name="G:\Git\springboot-security\src\main\java\com\joe\controller" />
     </key>
   </component>
@@ -142,7 +130,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1600942835364</updated>
-      <workItem from="1600942838275" duration="30541000" />
+      <workItem from="1600942838275" duration="30902000" />
     </task>
     <task id="LOCAL-00001" summary="增加忽略文件">
       <created>1601175656180</created>
@@ -184,11 +172,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/joe/config/MyInvocationSecurityMetadataSourceService.java</url>
           <line>33</line>
           <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/joe/config/MyAccessDecisionManager.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
