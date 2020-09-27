@@ -1,0 +1,20 @@
+#端口配置
+server:
+  port: 8080
+  servlet:
+    context-path: /springboot-security
+
+#模板和静态资源配置
+spring:
+  application:
+    name: springboot-security
+  resources:
+    static-locations: classpath:/static/
+  thymeleaf:
+    encoding: utf-8
+    cache: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_db?serverTimezone=UTC&characterEncoding=utf8&useUnicode=true&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
