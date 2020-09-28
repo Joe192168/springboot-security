@@ -48,16 +48,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 //.antMatchers("/r/r1").hasAuthority("p1")
                 //.antMatchers("/r/r2").hasAuthority("p2")
-                .antMatchers("/r/**").authenticated()//所有/r/**的请求必须认证通过
+                //.antMatchers("/r/**").authenticated()//所有/r/**的请求必须认证通过
+                .antMatchers("/refresh/**").anonymous()//匿名可以访问
+                //.anyRequest().authenticated()
                 .and()
                 .csrf().disable() //禁用csrf
                 .headers().frameOptions().disable() //禁用frame options
                 .and()
                 .formLogin()//允许表单登录
                 .loginPage("/user/login")
-                .loginProcessingUrl("/j_spring_security_check").failureUrl("/user/login?error=true").defaultSuccessUrl("/main/main")
+                .loginProcessingUrl("/j_spring_security_check")
+                .failureUrl("/user/login?error=true")
+                .defaultSuccessUrl("/main/main")
                 .successForwardUrl("/login-success")//自定义登录成功的页面地址
-                .and().logout().permitAll();//除了/r/**，其它的请求可以访问
+                .and().logout().permitAll();//注销行为任意访问
         http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
 
     }
