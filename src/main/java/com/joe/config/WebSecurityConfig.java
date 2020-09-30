@@ -2,8 +2,10 @@ package com.joe.config;
 
 import com.joe.exception.JWTAccessDeniedHandler;
 import com.joe.exception.JWTAuthenticationEntryPoint;
+import com.joe.exception.JwtAuthenticationFilter;
 import com.joe.filter.JWTAuthenticationFilter;
 import com.joe.filter.JWTAuthorizationFilter;
+import com.joe.filter.MyFilterSecurityInterceptor;
 import com.joe.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,6 +17,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -24,6 +27,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
+
+    @Autowired
+    private JWTAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+
+    @Autowired
+    private JWTAccessDeniedHandler jwtAccessDeniedHandler;
 
     @Value("${ignore.urls}")
     private String antMatchers;
@@ -50,15 +59,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 其他的需要登陆后才能访问  其他url都需要验证
                 .anyRequest().authenticated()
                 .and()
-                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
-                .addFilter(new JWTAuthorizationFilter(authenticationManager()))
-                // 不需要session
+                .addFilter(new JWTAuthenticationFilter(authenticationManager()))//认证
+                .addFilter(new JWTAuthorizationFilter(authenticationManager()))//授权
+                //不需要session
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .exceptionHandling().authenticationEntryPoint(new JWTAuthenticationEntryPoint())
-                .accessDeniedHandler(new JWTAccessDeniedHandler()); //添加无权限时的处理
+                .httpBasic()
+                .authenticationEntryPoint(jwtAuthenticationEntryPoint)//配置未登录自定义处理类
+                .and()
+                .exceptionHandling().accessDeniedHandler(jwtAccessDeniedHandler);//添加无权限时的处理
+        // 拦截受保护的url
         http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
+        // 配置jwt验证过滤器，位于用户名密码验证过滤器之后
+        http.addFilterAfter(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
     }
 

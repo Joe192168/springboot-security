@@ -1,4 +1,4 @@
-package com.joe.config;
+package com.joe.filter;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;

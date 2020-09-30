@@ -1,4 +1,4 @@
-package com.joe.config;
+package com.joe.filter;
 
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;

@@ -1,18 +1,14 @@
 package com.joe.utils;
 
 import com.joe.domian.dto.JwtUser;
-import com.joe.domian.pojo.Permission;
 import com.joe.domian.pojo.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.security.core.GrantedAuthority;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 public class JwtTokenUtils implements Serializable {
@@ -48,7 +44,7 @@ public class JwtTokenUtils implements Serializable {
     }
 
     // 从token中获取用户名
-    public static JwtUser getJwtUser(String token) {
+    public static JwtUser parseToken(String token) {
         Claims claims = getAllClaimsFromToken(token);
         User user = new User();
         user.setUsername(claims.getSubject());
@@ -63,7 +59,7 @@ public class JwtTokenUtils implements Serializable {
         return getAllClaimsFromToken(token).getExpiration().before(new Date());
     }
 
-    private static Claims getAllClaimsFromToken(String token) {
+    public static Claims getAllClaimsFromToken(String token) {
         return Jwts.parser()
                 .setSigningKey(SECRET)
                 .parseClaimsJws(token)

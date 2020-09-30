@@ -11,7 +11,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * 验证成功当然就是进行鉴权了
@@ -42,7 +41,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     // 这里从token中获取用户信息并新建一个token
     private UsernamePasswordAuthenticationToken getAuthentication(String tokenHeader) {
         String token = tokenHeader.replace(JwtTokenUtils.TOKEN_PREFIX, "");
-        JwtUser jwtUser = JwtTokenUtils.getJwtUser(token);
+        JwtUser jwtUser = JwtTokenUtils.parseToken(token);
         if (jwtUser != null){
             return new UsernamePasswordAuthenticationToken(jwtUser.getUsername(), null, jwtUser.getAuthorities());
         }
