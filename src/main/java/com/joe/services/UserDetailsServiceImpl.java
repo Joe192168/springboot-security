@@ -9,8 +9,6 @@ import com.joe.domian.pojo.Permission;
 import com.joe.domian.pojo.User;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -34,6 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userDao.getByUserName(username);
         if (user != null) {
             List<String> permList = new ArrayList<>();
+            //这块是获取用户权限，也可以改成RBAC（角色控制权限)
             List<Permission> permissions = permissionDao.getByUserId(user.getId());
             for (Permission perm:permissions){
                 permList.add(perm.getCode());

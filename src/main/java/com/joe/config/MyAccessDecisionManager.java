@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 /**
- * Created by yangyibo on 17/1/19.
+ * 匹配用户的url权限是否和当前请求的url
  */
 @Service
 public class MyAccessDecisionManager implements AccessDecisionManager {

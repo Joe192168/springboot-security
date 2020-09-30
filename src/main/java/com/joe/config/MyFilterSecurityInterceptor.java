@@ -1,4 +1,5 @@
 package com.joe.config;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 /**
- * Created by yangyibo on 17/1/19.
+ * 拦截受保护的url，这块主要来源loadResourceDefine加载权限表中所有权限
  */
 @Service
 public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter {
