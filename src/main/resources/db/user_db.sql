@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 27/09/2020 19:20:23
+ Date: 30/09/2020 12:46:30
 */
 
 SET NAMES utf8mb4;
@@ -68,13 +68,14 @@ CREATE TABLE `t_permission`  (
   `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '请求地址',
   `method` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '方法类型',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_permission
 -- ----------------------------
-INSERT INTO `t_permission` VALUES (1, 'GET_R1', NULL, '/r/r1', 'GET');
-INSERT INTO `t_permission` VALUES (2, 'GET_R2', NULL, '/r/r2', 'GET');
+INSERT INTO `t_permission` VALUES (1, 'URL_R1', NULL, '/auth/r1', 'GET');
+INSERT INTO `t_permission` VALUES (2, 'URL_R2', NULL, '/auth/r2', 'GET');
+INSERT INTO `t_permission` VALUES (3, 'URL_R3', NULL, '/tasks/getTasks', 'GET');
 
 -- ----------------------------
 -- Table structure for t_role
@@ -93,8 +94,8 @@ CREATE TABLE `t_role`  (
 -- ----------------------------
 -- Records of t_role
 -- ----------------------------
-INSERT INTO `t_role` VALUES (1, 'ADMIN', '管理员权限', '2019-12-31 11:57:04', '2019-12-31 11:57:07', '1');
-INSERT INTO `t_role` VALUES (2, 'USER', '普通用户', '2019-12-31 11:57:25', '2019-12-31 11:57:27', '1');
+INSERT INTO `t_role` VALUES (1, 'ROLE_ADMIN', '管理员权限', '2019-12-31 11:57:04', '2019-12-31 11:57:07', '1');
+INSERT INTO `t_role` VALUES (2, 'ROLE_USER', '普通用户', '2019-12-31 11:57:25', '2019-12-31 11:57:27', '1');
 
 -- ----------------------------
 -- Table structure for t_role_permission
