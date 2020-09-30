@@ -1,4 +1,4 @@
-package com.joe.config;
+package com.joe.services;
 
 import com.joe.dao.PermissionDao;
 import com.joe.domian.pojo.Permission;
@@ -16,7 +16,7 @@ import java.util.*;
  * 通过过滤器加载所有url权限
  */
 @Service
-public class MyInvocationSecurityMetadataSourceService  implements
+public class MyInvocationSecurityMetadataSourceServiceImpl implements
         FilterInvocationSecurityMetadataSource {
 
     @Autowired

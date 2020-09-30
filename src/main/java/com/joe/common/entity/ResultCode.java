@@ -3,17 +3,17 @@ package com.joe.common.entity;
 /**
  * 公共的返回码
  *    返回码code：
- *      成功：10000
- *      失败：10001
+ *      成功：200
+ *      失败：500
  *      未登录：10002
  *      未授权：10003
  *      抛出异常：99999
  */
 public enum ResultCode {
 
-    SUCCESS(true,10000,"操作成功！"),
+    SUCCESS(true,200,"操作成功！"),
     //---系统错误返回码-----
-    FAIL(false,10001,"操作失败"),
+    FAIL(false,500,"操作失败"),
     UNAUTHENTICATED(false,10002,"您还未登录"),
     UNAUTHORISE(false,10003,"权限不足"),
     SERVER_ERROR(false,99999,"抱歉，系统繁忙，请稍后重试！"),

@@ -6,6 +6,7 @@ import com.joe.filter.JWTAuthenticationFilter;
 import com.joe.filter.JWTAuthorizationFilter;
 import com.joe.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -24,6 +25,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
 
+    @Value("${ignore.urls}")
+    private String antMatchers;
+
     //密码编码器
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -41,14 +45,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .anyRequest().authenticated() //任何请求,登录后可以访问
-                //.and()
-                //.formLogin()
-                //.loginPage("/auth/login")
-                //.failureUrl("/auth/login?error")
-                //.permitAll() //登录页面用户任意访问
-                .and()
-                .logout().permitAll() //注销行为任意访问
+                // 不进行权限验证的请求或资源(从配置文件中读取)
+                .antMatchers(antMatchers.split(",")).permitAll()
+                // 其他的需要登陆后才能访问  其他url都需要验证
+                .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
@@ -57,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .exceptionHandling().authenticationEntryPoint(new JWTAuthenticationEntryPoint())
-                .accessDeniedHandler(new JWTAccessDeniedHandler());      //添加无权限时的处理
+                .accessDeniedHandler(new JWTAccessDeniedHandler()); //添加无权限时的处理
         http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
 
     }
