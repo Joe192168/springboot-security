@@ -38,7 +38,7 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
                 }
             }
         }
-        throw new AccessDeniedException("no right");
+        throw new AccessDeniedException("无权访问该资源");
     }
 
     @Override
