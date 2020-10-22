@@ -19,6 +19,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * 安全配置
+ * @author Joe
+ */
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -37,20 +41,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${ignore.urls}")
     private String antMatchers;
 
-    //密码编码器
+    /**
+     * 密码编码器
+     * @return
+     */
     @Bean
     public PasswordEncoder passwordEncoder(){
         //return NoOpPasswordEncoder.getInstance(); 明文
         return new LoginPasswordEncoder();
     }
 
+    /**
+     * user Details Service验证
+     * @param auth
+     * @throws Exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder()); //user Details Service验证
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 
     }
 
-    //安全拦截机制（最重要）
+    /**
+     * 安全拦截机制（最重要）
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
