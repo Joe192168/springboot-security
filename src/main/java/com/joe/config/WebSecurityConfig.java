@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * user Details Service验证
+     * 认证
      * @param auth
      * @throws Exception
      */
@@ -63,7 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * 安全拦截机制（最重要）
+     * 授权（安全拦截机制）
      * @param http
      * @throws Exception
      */
