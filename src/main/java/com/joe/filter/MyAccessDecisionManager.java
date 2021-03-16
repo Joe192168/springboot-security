@@ -8,8 +8,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 匹配用户的url权限是否和当前请求的url
@@ -33,8 +36,11 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
             c = iter.next();
             needRole = c.getAttribute();
             for(GrantedAuthority ga : authentication.getAuthorities()) {//authentication 为在注释1 中循环添加到 GrantedAuthority 对象中的权限信息集合
-                if(needRole.trim().contains(ga.getAuthority())) {
-                    return;
+                List<String> roleList = Arrays.asList(needRole.split(",")).stream().map(role -> role.trim()).collect(Collectors.toList());
+                for (String role:roleList){
+                    if(role.equals(ga.getAuthority())) {
+                        return;
+                    }
                 }
             }
         }

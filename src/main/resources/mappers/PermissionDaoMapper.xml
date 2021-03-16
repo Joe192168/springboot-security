@@ -32,10 +32,10 @@
     </sql>
 
     <select id="findAll" resultType="com.joe.domian.pojo.Permission">
-        select  CONCAT(tp.url) as url,GROUP_CONCAT(rol.role_name ORDER BY tp.url) as needRoles
+        select  CONCAT(tp.url) as url,GROUP_CONCAT(COALESCE(rol.role_name,'NO_ROLE') ORDER BY tp.url) as needRoles
         from t_permission tp
-        INNER JOIN t_role_permission rop on tp.id = rop.permission_id
-        INNER JOIN t_role rol on rop.ROLE_ID = rol.id
+        LEFT JOIN t_role_permission rop on tp.id = rop.permission_id
+        LEFT JOIN t_role rol on rop.ROLE_ID = rol.id
         GROUP BY
         tp.url
     </select>

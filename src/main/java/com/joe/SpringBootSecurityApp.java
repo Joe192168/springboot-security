@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @create: 2020-09-24 19:06
  **/
 @SpringBootApplication
-@MapperScan("com.joe")
+@MapperScan("com.joe.dao")
 public class SpringBootSecurityApp {
 
     public static void main(String[] args) {

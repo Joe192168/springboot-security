@@ -2,6 +2,7 @@ package com.joe.services;
 
 import com.joe.dao.PermissionDao;
 import com.joe.domian.pojo.Permission;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
@@ -34,9 +35,11 @@ public class MyInvocationSecurityMetadataSourceServiceImpl implements
         List<Permission> permissions = permissionDao.findAll();
         for(Permission permission : permissions) {
             array = new ArrayList<>();
-            cfg = new SecurityConfig(permission.getNeedRoles());
-            //此处只添加了用户的名字，其实还可以添加更多权限的信息，例如请求方法到ConfigAttribute的集合中去。此处添加的信息将会作为MyAccessDecisionManager类的decide的第三个参数。
-            array.add(cfg);
+            if (StringUtils.isNoneBlank(permission.getNeedRoles())){
+                cfg = new SecurityConfig(permission.getNeedRoles());
+                //此处只添加了用户的名字，其实还可以添加更多权限的信息，例如请求方法到ConfigAttribute的集合中去。此处添加的信息将会作为MyAccessDecisionManager类的decide的第三个参数。
+                array.add(cfg);
+            }
             //用权限的getUrl() 作为map的key，用ConfigAttribute的集合作为 value，
             map.put(permission.getUrl(), array);
         }

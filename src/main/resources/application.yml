@@ -55,7 +55,7 @@ spring:
 #mybatis-plus
 mybatis-plus:
   mapper-locations: classpath*:mappers/*.xml,classpath*:mapper/*.xml
-  type-aliases-package: com.joe.domian
+  type-aliases-package: com.joe.domian.pojo
   configuration:
     map-underscore-to-camel-case: true
 #配置不需要认证的接口
