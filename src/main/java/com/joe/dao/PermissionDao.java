@@ -11,7 +11,7 @@ import java.util.Map;
  **/
 public interface PermissionDao {
 
-    public List<Permission> findAll();
+    List<Permission> findAll();
 
     List<Permission> getByMap(Map<String, Object> map);
 

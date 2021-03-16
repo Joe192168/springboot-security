@@ -10,5 +10,6 @@ public class Permission {
     private String url;
     private String method;
     private String description;
+    private String needRoles;
 
 }

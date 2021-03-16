@@ -1,14 +1,16 @@
 package com.joe.domian.pojo;
 
 import lombok.Data;
+import java.util.Date;
 
 @Data
 public class Role implements Comparable<Role>{
 	private Integer id;
-	private String name;
-	private Integer roleLevel;
+	private String roleName;
+	private Date createTime;
+	private Date updateTime;
 	private String description;
-	private String menuItems;
+	private String status;
 
 	@Override
 	public int compareTo(Role o) {
