@@ -1,8 +1,6 @@
-package com.joe.exception;
+package com.joe.filter;
 
 import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.extension.api.R;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.joe.common.entity.Result;
 import com.joe.common.entity.ResultCode;
 import com.joe.utils.JwtTokenUtils;
@@ -10,7 +8,6 @@ import io.jsonwebtoken.Claims;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,15 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
-/**
- * Token验证过滤器
- */
-public class JwtAuthenticationFilter extends OncePerRequestFilter {
- 
-    public JwtAuthenticationFilter() {
+public class TokenAuthenticationFilter extends OncePerRequestFilter {
+
+    public TokenAuthenticationFilter() {
 
     }
- 
+
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         httpServletResponse.setContentType("application/json");

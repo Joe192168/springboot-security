@@ -2,10 +2,10 @@ package com.joe.config;
 
 import com.joe.exception.JWTAccessDeniedHandler;
 import com.joe.exception.JWTAuthenticationEntryPoint;
-import com.joe.exception.JwtAuthenticationFilter;
 import com.joe.filter.JWTAuthenticationFilter;
 import com.joe.filter.JWTAuthorizationFilter;
 import com.joe.filter.MyFilterSecurityInterceptor;
+import com.joe.filter.TokenAuthenticationFilter;
 import com.joe.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -88,7 +88,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // 拦截受保护的url
         http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
         // 配置jwt验证过滤器，位于用户名密码验证过滤器之后
-        http.addFilterAfter(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterAfter(new TokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
     }
 
