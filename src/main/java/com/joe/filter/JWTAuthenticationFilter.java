@@ -38,7 +38,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     //自定义登陆路由，相当Controller里增加一个/auth/login路由方法一样，自己就不需要实现登陆方法了
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
-        super.setFilterProcessesUrl("/auth/login");
+        super.setFilterProcessesUrl("/login");
     }
 
     //身份验证
