@@ -8,7 +8,6 @@ import com.joe.filter.MyFilterSecurityInterceptor;
 import com.joe.filter.TokenAuthenticationFilter;
 import com.joe.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -38,8 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JWTAccessDeniedHandler jwtAccessDeniedHandler;
 
-    @Value("${ignore.urls}")
-    private String antMatchers;
+    @Autowired
+    private FilterIgnoreConfig filterIgnoreConfig;
 
     /**
      * 密码编码器
@@ -71,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
                 // 不进行权限验证的请求或资源(从配置文件中读取)
-                .antMatchers(antMatchers.split(",")).permitAll()
+                .antMatchers(filterIgnoreConfig.getUrls().toString().split(",")).permitAll()
                 // 其他的需要登陆后才能访问  其他url都需要验证
                 .anyRequest().authenticated()
                 .and()
